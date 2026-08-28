@@ -15,15 +15,15 @@ const app = express();
 
 await connectDB();
 
+// Allow requests from ALL origins
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-    ],
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 app.use(express.json());
 
 app.use((req, res, next) => {
