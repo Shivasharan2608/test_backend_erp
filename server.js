@@ -8,6 +8,8 @@ import employeeRoutes from "./routes/employeeRoutes.js";
 import departmentRoutes from "./routes/departmentRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
 import payrollRoutes from "./routes/payrollRoutes.js";
+import attendanceRoutes from "./routes/attendanceRoutes.js";
+import projectRoutes from "./routes/projectRoutes.js";
 
 dotenv.config();
 
@@ -37,6 +39,15 @@ app.use("/api/employees", employeeRoutes);
 app.use("/api/departments", departmentRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/payrolls", payrollRoutes);
+app.use(
+  "/api/attendance",
+  attendanceRoutes
+);
+
+app.use(
+  "/api/projects",
+  projectRoutes
+);
 
 app.get("/", (req, res) => {
   res.send("🚀 API Running...");

@@ -8,6 +8,7 @@ const payrollSchema = new mongoose.Schema(
       required: true,
     },
 
+    // Salary Details
     basicSalary: {
       type: Number,
       required: true,
@@ -18,9 +19,41 @@ const payrollSchema = new mongoose.Schema(
       default: 0,
     },
 
+    overtime: {
+      type: Number,
+      default: 0,
+    },
+
+    bonus: {
+      type: Number,
+      default: 0,
+    },
+
+    // Deductions
     deduction: {
       type: Number,
       default: 0,
+    },
+
+    tax: {
+      type: Number,
+      default: 0,
+    },
+
+    leaveDeduction: {
+      type: Number,
+      default: 0,
+    },
+
+    // Final Salary
+    grossSalary: {
+      type: Number,
+      required: true,
+    },
+
+    totalDeduction: {
+      type: Number,
+      required: true,
     },
 
     netSalary: {
@@ -38,10 +71,42 @@ const payrollSchema = new mongoose.Schema(
       enum: ["Pending", "Paid"],
       default: "Pending",
     },
+
+    paidDate: {
+      type: Date,
+      default: null,
+    },
+
+    paymentMethod: {
+      type: String,
+      enum: [
+        "Bank Transfer",
+        "Cash",
+        "UPI",
+      ],
+      default: "Bank Transfer",
+    },
   },
   {
     timestamps: true,
   }
 );
 
-export default mongoose.model("Payroll", payrollSchema);
+
+// Prevent duplicate payroll
+
+payrollSchema.index(
+  {
+    employee: 1,
+    month: 1,
+  },
+  {
+    unique: true,
+  }
+);
+
+
+export default mongoose.model(
+  "Payroll",
+  payrollSchema
+);
