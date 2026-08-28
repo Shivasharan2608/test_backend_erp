@@ -2,9 +2,7 @@ import Payroll from "../models/Payroll.js";
 import Employee from "../models/Employee.js";
 
 
-// Create Payroll
-import Payroll from "../models/Payroll.js";
-import Employee from "../models/Employee.js";
+
 
 
 export const createPayroll = async (req, res) => {
